@@ -53,6 +53,12 @@
       font-weight: bold;
       color: #007bff; /* Azul vívido */
     }
+
+    select {
+      font-size: 1rem;
+      padding: 10px;
+      margin-top: 20px;
+    }
   </style>
   <script>
     // Função para incrementar o contador de cliques na imagem
@@ -80,13 +86,21 @@
       // Você pode adicionar aqui outras ações relacionadas à conquista, como registrar ou mostrar visualmente no site.
     }
 
-    // Inicialização do contador na carga da página
+    // Função para mudar a skin do pneu
+    function mudarSkin() {
+      var skinSelecionada = document.getElementById('selectSkin').value;
+      document.getElementById('imagemPneu').src = skinSelecionada;
+    }
+
+    // Inicialização do contador e da imagem na carga da página
     window.onload = function() {
       if (localStorage.getItem('contadorCliquesPneu')) {
         document.getElementById('contadorPneu').textContent = localStorage.getItem('contadorCliquesPneu');
       } else {
         document.getElementById('contadorPneu').textContent = '0';
       }
+      // Configurar a imagem inicial
+      document.getElementById('imagemPneu').src = 'pneu-skin1.jpg'; // Imagem padrão
     };
   </script>
 </head>
@@ -95,11 +109,18 @@
     <h1>Pneu</h1>
     
     <!-- Inserindo a imagem de pneu com função para incrementar o contador -->
-    <img src="pneu.jpg" alt="Pneu" onclick="incrementarContador()">
+    <img id="imagemPneu" src="pneu-skin1.jpg" alt="Pneu" onclick="incrementarContador()">
     
     <p>Clique no pneu para contar os cliques.</p>
-
     <p>Contagem de cliques do pneu: <span id="contadorPneu"></span></p>
+
+    <!-- Seletor para skins -->
+    <select id="selectSkin" onchange="mudarSkin()">
+      <option value="pneu.jpg">Skin 1</option>
+      <option value="pneu2.jpg">Skin 2</option>
+      <option value="pneu3.jpg">Skin 3</option>
+      <!-- Adicione mais opções conforme necessário -->
+    </select>
   </div>
 </body>
 </html>
